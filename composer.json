@@ -1,0 +1,29 @@
+{
+    "name": "arrow-web-sol/api-base",
+    "description": "Some base classes for API development / testing",
+    "authors": [
+        {
+            "name": "Arron King",
+            "email": "arron.king@arrow-web.co.uk"
+        }
+    ],
+    "require": {
+        "php": ">=5.5",
+        "illuminate/routing": "5.1.x|5.2.x",
+        "league/fractal": "^0.13.0"
+    },
+    "require_dev": {
+        "behat/behat": "dev-master",
+        "behat/mink": "^1.7",
+        "behat/mink-extension": "^2.2",
+        "behat/mink-goutte-driver": "^1.2",
+        "laracasts/behat-laravel-extension": "^1.0"
+    },
+    "license": "MIT",
+    "minimum-stability": "dev",
+    "autoload": {
+        "psr-4": {
+            "Arrow\\Api-Base\\": "src"
+        }
+    }
+}
