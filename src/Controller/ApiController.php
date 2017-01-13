@@ -3,7 +3,7 @@
 namespace Arrow\ApiBase\Controller;
 
 use Arrow\ApiBase\Api\ErrorCodes;
-use App\Http\Controllers\Controller;
+
 use League\Fractal\Resource\Collection;
 use League\Fractal\Resource\Item;
 use League\Fractal\Manager;
@@ -11,9 +11,11 @@ use League\Fractal\Serializer\JsonApiSerializer;
 use League\Fractal\Pagination\Cursor;
 use \Response;
 use \ErrorProvider;
+
+use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Http\Request;
 
-abstract class ApiController extends Controller
+abstract class ApiController extends BaseController
 {
     protected $statusCode = 200;
     protected $current, $eagerLoad, $requestedScopes, $request, $previous, $fractal;

@@ -1,4 +1,6 @@
-<?php namespace App\Repositories;
+<?php
+
+namespace Arrow\ApiBase\Repositories;
 
 interface LookupRepository extends Repository
 {

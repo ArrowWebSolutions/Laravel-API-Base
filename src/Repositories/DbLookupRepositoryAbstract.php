@@ -1,4 +1,6 @@
-<?php namespace App\Repositories;
+<?php
+
+namespace Arrow\ApiBase\Repositories;
 
 abstract class DbLookupRepositoryAbstract extends DbRepositoryAbstract implements LookupRepository
 {

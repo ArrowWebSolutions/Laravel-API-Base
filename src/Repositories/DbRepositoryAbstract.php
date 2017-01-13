@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Repositories;
+namespace Arrow\ApiBase\Repositories;
 
 abstract class DbRepositoryAbstract implements Repository
 {

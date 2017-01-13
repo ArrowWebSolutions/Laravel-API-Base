@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Repositories;
+namespace Arrow\ApiBase\Repositories;
 
 interface Repository
 {
