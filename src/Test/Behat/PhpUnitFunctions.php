@@ -1,5 +1,7 @@
 <?php
 
+namespace Arrow\ApiBase\Test\Behat;
+
 trait PhpUnitFunctions
 {
 /*
