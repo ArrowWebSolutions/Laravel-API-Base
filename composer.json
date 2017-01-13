@@ -12,7 +12,7 @@
         "illuminate/routing": "5.1.x|5.2.x",
         "league/fractal": "^0.13.0"
     },
-    "require_dev": {
+    "require-dev": {
         "behat/behat": "dev-master",
         "behat/mink": "^1.7",
         "behat/mink-extension": "^2.2",
