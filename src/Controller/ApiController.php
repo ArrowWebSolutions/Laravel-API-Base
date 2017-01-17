@@ -50,7 +50,7 @@ abstract class ApiController extends BaseController
 
     protected function getPrevious($raw = false)
     {
-        return $raw ? $this->previous : ($this->previous ? base64_encode($this->previous) : null);
+        return $raw ? $this->previous : (!is_null($this->previous) ? base64_encode($this->previous) : null);
     }
 
     protected function getEagerLoad()
