@@ -10,7 +10,7 @@
     "require": {
         "php": ">=5.5",
         "illuminate/routing": "^5.1.0",
-        "league/fractal": "^0.13.0"
+        "league/fractal": "~0.13"
     },
     "require-dev": {
         "behat/behat": "dev-master",
