@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "2ab700510c1f274dfaad0118b06c9671",
-    "content-hash": "1e6c3bb4e4ff73d0f855800497965cd1",
+    "hash": "6df221028e62c39159255a4c96af7402",
+    "content-hash": "1e5d600072740976fdd808d6b43e0da5",
     "packages": [
         {
             "name": "doctrine/inflector",
@@ -123,12 +123,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/contracts.git",
-                "reference": "75291d5fe481c06233547308eefba3bf78af1618"
+                "reference": "975a9815dc8a07462636f22f022ffce5dbb672e4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/illuminate/contracts/zipball/75291d5fe481c06233547308eefba3bf78af1618",
-                "reference": "75291d5fe481c06233547308eefba3bf78af1618",
+                "url": "https://api.github.com/repos/illuminate/contracts/zipball/975a9815dc8a07462636f22f022ffce5dbb672e4",
+                "reference": "975a9815dc8a07462636f22f022ffce5dbb672e4",
                 "shasum": ""
             },
             "require": {
@@ -157,7 +157,7 @@
             ],
             "description": "The Illuminate Contracts package.",
             "homepage": "https://laravel.com",
-            "time": "2017-01-10 23:52:28"
+            "time": "2017-01-16 21:42:19"
         },
         {
             "name": "illuminate/http",
@@ -255,12 +255,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/routing.git",
-                "reference": "0793b1fa9f2ded3a5f809808f0f7923df9abf00e"
+                "reference": "ac8892158cf563926360e03731ab2ac4a5ab7674"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/illuminate/routing/zipball/0793b1fa9f2ded3a5f809808f0f7923df9abf00e",
-                "reference": "0793b1fa9f2ded3a5f809808f0f7923df9abf00e",
+                "url": "https://api.github.com/repos/illuminate/routing/zipball/ac8892158cf563926360e03731ab2ac4a5ab7674",
+                "reference": "ac8892158cf563926360e03731ab2ac4a5ab7674",
                 "shasum": ""
             },
             "require": {
@@ -303,7 +303,7 @@
             ],
             "description": "The Illuminate Routing package.",
             "homepage": "https://laravel.com",
-            "time": "2017-01-10 23:52:28"
+            "time": "2017-01-13 17:55:25"
         },
         {
             "name": "illuminate/session",
@@ -311,12 +311,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/session.git",
-                "reference": "0f2451586480208a2a73ba12e986423643f7f991"
+                "reference": "af3188b8626d8153363d6060b7f3df742cf64504"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/illuminate/session/zipball/0f2451586480208a2a73ba12e986423643f7f991",
-                "reference": "0f2451586480208a2a73ba12e986423643f7f991",
+                "url": "https://api.github.com/repos/illuminate/session/zipball/af3188b8626d8153363d6060b7f3df742cf64504",
+                "reference": "af3188b8626d8153363d6060b7f3df742cf64504",
                 "shasum": ""
             },
             "require": {
@@ -353,7 +353,7 @@
             ],
             "description": "The Illuminate Session package.",
             "homepage": "https://laravel.com",
-            "time": "2017-01-10 01:35:32"
+            "time": "2017-01-16 21:42:19"
         },
         {
             "name": "illuminate/support",
@@ -361,12 +361,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/support.git",
-                "reference": "249d8eda78f5ab0a393fe1847b70b5403897760e"
+                "reference": "0ca3756e35d806e899392183d2b86e72669cd498"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/illuminate/support/zipball/249d8eda78f5ab0a393fe1847b70b5403897760e",
-                "reference": "249d8eda78f5ab0a393fe1847b70b5403897760e",
+                "url": "https://api.github.com/repos/illuminate/support/zipball/0ca3756e35d806e899392183d2b86e72669cd498",
+                "reference": "0ca3756e35d806e899392183d2b86e72669cd498",
                 "shasum": ""
             },
             "require": {
@@ -409,20 +409,20 @@
             ],
             "description": "The Illuminate Support package.",
             "homepage": "https://laravel.com",
-            "time": "2017-01-10 23:52:28"
+            "time": "2017-01-13 18:19:47"
         },
         {
             "name": "league/fractal",
-            "version": "dev-master",
+            "version": "0.14.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/thephpleague/fractal.git",
-                "reference": "0546bd5c2aba414ba50c6ac676f507d42c6150a5"
+                "reference": "56ad8933fbb40328ca3321c84143b2c16186eebf"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/thephpleague/fractal/zipball/0546bd5c2aba414ba50c6ac676f507d42c6150a5",
-                "reference": "0546bd5c2aba414ba50c6ac676f507d42c6150a5",
+                "url": "https://api.github.com/repos/thephpleague/fractal/zipball/56ad8933fbb40328ca3321c84143b2c16186eebf",
+                "reference": "56ad8933fbb40328ca3321c84143b2c16186eebf",
                 "shasum": ""
             },
             "require": {
@@ -472,7 +472,7 @@
                 "league",
                 "rest"
             ],
-            "time": "2016-12-28 01:30:30"
+            "time": "2016-07-21 09:56:14"
         },
         {
             "name": "nesbot/carbon",
@@ -480,27 +480,26 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/briannesbitt/Carbon.git",
-                "reference": "0f87ca78d68298615068b08ce6c1b72c6ed86a49"
+                "reference": "5eab092a2fd50319d7f7ff2d4b235083cdb883d9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/briannesbitt/Carbon/zipball/0f87ca78d68298615068b08ce6c1b72c6ed86a49",
-                "reference": "0f87ca78d68298615068b08ce6c1b72c6ed86a49",
+                "url": "https://api.github.com/repos/briannesbitt/Carbon/zipball/5eab092a2fd50319d7f7ff2d4b235083cdb883d9",
+                "reference": "5eab092a2fd50319d7f7ff2d4b235083cdb883d9",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.3.0",
-                "symfony/translation": "~2.6|~3.0"
+                "symfony/translation": "~2.6 || ~3.0"
             },
             "require-dev": {
-                "friendsofphp/php-cs-fixer": "~1.11",
-                "phpunit/phpunit": "~4.0|~5.0",
-                "sllh/php-cs-fixer-styleci-bridge": "^2.1"
+                "friendsofphp/php-cs-fixer": "~2",
+                "phpunit/phpunit": "~4.0 || ~5.0"
             },
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.22-dev"
+                    "dev-master": "1.23-dev"
                 }
             },
             "autoload": {
@@ -526,7 +525,7 @@
                 "datetime",
                 "time"
             ],
-            "time": "2016-12-02 15:58:32"
+            "time": "2017-01-16 21:55:13"
         },
         {
             "name": "psr/log",
@@ -581,12 +580,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/debug.git",
-                "reference": "7a0d1faf0e3e9ef6c3eea08e48a461010ea211db"
+                "reference": "88d66d1f16dd99bd0ba0712a941b7207d07e62cd"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/debug/zipball/7a0d1faf0e3e9ef6c3eea08e48a461010ea211db",
-                "reference": "7a0d1faf0e3e9ef6c3eea08e48a461010ea211db",
+                "url": "https://api.github.com/repos/symfony/debug/zipball/88d66d1f16dd99bd0ba0712a941b7207d07e62cd",
+                "reference": "88d66d1f16dd99bd0ba0712a941b7207d07e62cd",
                 "shasum": ""
             },
             "require": {
@@ -630,7 +629,7 @@
             ],
             "description": "Symfony Debug Component",
             "homepage": "https://symfony.com",
-            "time": "2017-01-02 20:33:09"
+            "time": "2017-01-15 16:05:29"
         },
         {
             "name": "symfony/event-dispatcher",
@@ -1574,12 +1573,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/guzzle/guzzle.git",
-                "reference": "14fa40e26857c8f406d7a0c7d577705085fb6950"
+                "reference": "443ca656dec18f3e5ea7751d2429fc2aeacf3ca2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/guzzle/guzzle/zipball/14fa40e26857c8f406d7a0c7d577705085fb6950",
-                "reference": "14fa40e26857c8f406d7a0c7d577705085fb6950",
+                "url": "https://api.github.com/repos/guzzle/guzzle/zipball/443ca656dec18f3e5ea7751d2429fc2aeacf3ca2",
+                "reference": "443ca656dec18f3e5ea7751d2429fc2aeacf3ca2",
                 "shasum": ""
             },
             "require": {
@@ -1628,7 +1627,7 @@
                 "rest",
                 "web service"
             ],
-            "time": "2017-01-05 10:54:39"
+            "time": "2017-01-16 17:41:59"
         },
         {
             "name": "guzzlehttp/promises",
@@ -2138,12 +2137,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/dependency-injection.git",
-                "reference": "74b310dbf6a5e717e4c8aafcb2e1ba2eab116a52"
+                "reference": "71ca69d6b15d206b7f9ab71caeb22dd0202ff254"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/dependency-injection/zipball/74b310dbf6a5e717e4c8aafcb2e1ba2eab116a52",
-                "reference": "74b310dbf6a5e717e4c8aafcb2e1ba2eab116a52",
+                "url": "https://api.github.com/repos/symfony/dependency-injection/zipball/71ca69d6b15d206b7f9ab71caeb22dd0202ff254",
+                "reference": "71ca69d6b15d206b7f9ab71caeb22dd0202ff254",
                 "shasum": ""
             },
             "require": {
@@ -2193,7 +2192,7 @@
             ],
             "description": "Symfony DependencyInjection Component",
             "homepage": "https://symfony.com",
-            "time": "2017-01-11 21:31:22"
+            "time": "2017-01-16 15:26:58"
         },
         {
             "name": "symfony/dom-crawler",
