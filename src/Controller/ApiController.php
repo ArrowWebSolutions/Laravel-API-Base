@@ -44,7 +44,8 @@ abstract class ApiController extends BaseController
 
     protected function getCurrent($raw = false)
     {
-        return $raw ? $this->current : ($this->current ? base64_encode($this->current) : null);
+        $current = $this->current ? : 0;
+        return $raw ? $current : base64_encode($current);
     }
 
     protected function getPrevious($raw = false)
@@ -92,9 +93,9 @@ abstract class ApiController extends BaseController
         return $this;
     }
 
-    protected function getCursor($newCursor)
+    protected function getCursor($newCursor, $collection)
     {
-        return new Cursor($this->getCurrent(), $this->getPrevious(), $newCursor, $this->getPerPage());
+        return new Cursor($this->getCurrent(), $this->getPrevious(), $newCursor, $this->getPerPage(), $collection->count());
     }
 
     protected function respondWithSuccess($message, $httpSuccessCode = null)
@@ -122,7 +123,7 @@ abstract class ApiController extends BaseController
     {
         $resource = new Collection($collection, $callback);
         $last = $collection->last();
-        $resource->setCursor($this->getCursor($last ? base64_encode($last->id) : null));
+        $resource->setCursor($this->getCursor($last ? base64_encode($last->id) : null, $collection));
 
         $resource->setMetaValue('available_embeds', $this->possibleRelationships);
 
