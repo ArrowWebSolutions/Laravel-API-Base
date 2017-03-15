@@ -61,7 +61,7 @@ abstract class ApiController extends BaseController
     protected function setRequestedScopes($scopes)
     {
         $safe = array();
-        foreach ($scopes as $scope) $safe[] = str_replace('.', '_', $scope);
+        foreach ($scopes as $scope) $safe[] = $scope;
         $this->requestedScopes = $safe;
     }
 
