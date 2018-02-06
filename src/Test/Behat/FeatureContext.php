@@ -11,6 +11,8 @@ use Behat\MinkExtension\Context\MinkContext;
 use GuzzleHttp\Client;
 use GuzzleHttp\Middleware;
 use GuzzleHttp\Exception\BadResponseException;
+use Illuminate\Support\Str;
+use Illuminate\Support\Carbon;
 
 /**
  * Defines application features from the specific context.
@@ -50,6 +52,12 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
     protected $scope;
 
     protected $bearerToken;
+    protected $parameters;
+
+    /**
+     * The additional payload merged with the response payload
+     */
+    protected $additionalPayload;
 
     /**
      * Initializes context.
@@ -59,21 +67,76 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
      */
     public function __construct(array $parameters)
     {
-        $config = isset($parameters['guzzle']) && is_array($parameters['guzzle']) ? $parameters['guzzle'] : [];
+        $this->parameters = $parameters;
 
-        $config['base_uri'] = $parameters['base_uri'];
-        $config['headers'] = [
-            'Content-Type' => 'text/json',
-            'Accept' => 'text/json',
-        ];
+        // Just a standard guzzle client will be created
+        $this->createClients();
+    }
 
-        if (isset($parameters['token']))
-        {
-            $config['headers']['Authorization'] = 'Bearer ' . $parameters['token'];
-            $this->bearerToken = $parameters['token'];
+    /**
+     * @Given /^I use the client token$/
+     */
+    public function iUseTheClientToken()
+    {
+        //create a new client, using client token
+        $this->createClients('client');
+    }
+
+    /**
+     * @Given /^I use the user token$/
+     */
+    public function iUseTheUserToken()
+    {
+        //create a new client, using user token
+        $this->createClients('user');
+    }
+
+    /**
+     * @Given /^I use an invalid client token$/
+     */
+    public function iUseAnInvalidClientToken()
+    {
+        $this->createClients('client-invalid');
+    }
+
+    /**
+     * @Given /^I use an invalid user token$/
+     */
+    public function iUseAnInvalidUserToken()
+    {
+        $this->createClients('user-invalid');
+    }
+
+    /**
+     * @Given /^I have a password reset token for "([^"]*)"$/
+     */
+    public function iHaveAPasswordResetToken($email)
+    {
+        // Since we don't know the emailed token 
+        // then replace the token with a new one
+        $token = hash_hmac('sha256', Str::random(40), $email);
+
+        $tokenHash = password_hash($token, PASSWORD_BCRYPT, ['cost' => '10']);
+
+        if (DB::table('password_resets')
+                    ->where('email', $email)
+                    ->exists()) {
+            DB::table('password_resets')
+                ->where('email', $email)
+                ->update([
+                    'token' => $tokenHash
+                ]);
+        } else {
+            DB::table('password_resets')
+                ->insert([
+                    'email' => $email,
+                    'token' => $tokenHash,
+                    'created_at' => new Carbon
+                ]);
         }
 
-        $this->client = new Client($config);
+        // append to the variable to populate when we send the request
+        $this->additionalPayload['token'] = $token;
     }
 
     /**
@@ -93,12 +156,19 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
 
         $method = strtolower($httpMethod);
 
+        // Merge payload with additional payload
+        $payload = json_decode($this->requestPayload, TRUE);
+
+        if ($this->additionalPayload) {
+            $payload = array_merge($payload,$this->additionalPayload);
+        }
+
         try {
             switch ($httpMethod) {
                 case 'PUT':
                 case 'POST':
                     $this->response = $this->client->request($httpMethod, $resource, [
-                        'json' => json_decode($this->requestPayload),
+                        'json' => $payload,
                     ]);
                     break;
 
@@ -176,6 +246,19 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
             $actualValue,
             $expectedValue,
             "Asserting the [$property] property in current scope equals [$expectedValue]: ".json_encode($payload)
+        );
+    }
+
+    /**
+     * @Given /^the "([^"]*)" property is null$/
+     */
+    public function thePropertyIsNull($property)
+    {
+        $payload = $this->getScopePayload();
+        $actualValue = $this->arrayGet($payload, $property);
+
+        $this->assertEquals($actualValue, null,
+            "Asserting the [$property] property in current scope equals null: " . json_encode($payload)
         );
     }
 
@@ -422,7 +505,7 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
         $last = max(0, $last - 1);
         $this->scope = "{$scope}.{$last}";
     }
-
+    
     /**
      * @Given /^scope into the first "([^"]*)" property$/
      */
@@ -576,5 +659,142 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
         }
 
         return $array;
+    }
+
+    /**
+     * Create a Guzzle client instance
+     *
+     * @param  string $tokenType
+     */
+    protected function createClients($tokenType = null) {
+
+        $parameters = $this->parameters;
+
+        $config = isset($parameters['guzzle']) && is_array($parameters['guzzle']) ? $parameters['guzzle'] : [];
+
+        $config['base_uri'] = $parameters['base_uri'];
+        $config['headers'] = [
+            'Content-Type' => 'text/json',
+            'Accept' => 'text/json',
+        ];
+
+        /**
+         * If the tokenType parameter is set then we want to get
+         * a token so setup a guzzle client and pass the token
+         * back and use this in the config for the main guzzle client
+         */
+        $bearerToken = null;
+        switch ($tokenType)
+        {
+            case 'user':
+                $bearerToken = $this->getPasswordAccessToken(
+                    $parameters['password_credentials']['client_id'],
+                    $parameters['password_credentials']['client_secret'],
+                    $parameters['password_credentials']['username'],
+                    $parameters['password_credentials']['password'],
+                    '',
+                    $config
+                );
+                break;
+            case 'client':
+                $bearerToken = $this->getClientCredentialsAccessToken(
+                    $parameters['client_credentials']['client_id'],
+                    $parameters['client_credentials']['client_secret'],
+                    '',
+                    $config
+                );
+                break;
+            case 'user-invalid':
+                $bearerToken = $this->getInvalidPasswordAccessToken();
+                break;
+            case 'client-invalid':
+                $bearerToken = $this->getInvalidClientAccessToken();
+                break;
+        }
+
+        if (!empty($bearerToken)) {
+            $config['headers']['Authorization'] = 'Bearer ' . $bearerToken;
+            $this->bearerToken = $bearerToken;
+        }
+
+        $this->client = new Client($config);
+    }
+
+    protected function getInvalidPasswordAccessToken()
+    {
+        return sha1(str_random(60));
+    }
+
+    protected function getInvalidClientAccessToken()
+    {
+        return $this->getInvalidPasswordAccessToken();
+    }
+
+    /**
+     * Gets an access token for a password grant
+     * @param  int $clientId     id of the requesting client application
+     * @param  string $clientSecret secret of the requesting client application
+     * @param  string $username     username of the user to authenticate
+     * @param  string $password     password of the user to authenticate
+     * @param  string $scope        requested scopes
+     * @param  array $config       Guzzle config
+     * @return string              the access token
+     */
+    protected function getPasswordAccessToken($clientId, $clientSecret, $username, $password, $scope, $config)
+    {
+        //just cache the results so we don't hit the API for a new token for each request
+        static $results = [];
+
+        $hash = sha1($clientId . $clientSecret . $username . $password . $scope);
+        if (!isset($results[$hash]))
+        {
+            $http = new Client($config);
+            $response = $http->post('/oauth/token', [
+                'form_params' => [
+                    'grant_type' => 'password',
+                    'client_id' => $clientId,
+                    'client_secret' => $clientSecret,
+                    'username' => $username,
+                    'password' => $password,
+                    'scope' => $scope,
+                ],
+            ]);
+
+            $results[$hash] = json_decode((string) $response->getBody(), true)['access_token'];
+        }
+
+        return $results[$hash];
+    }
+
+    /**
+     * Gets an access token for a client credentials grant
+     * @param  int $clientId     id of the requesting client application
+     * @param  string $clientSecret secret of the requesting client application
+     * @param  string $scope        requested scopes
+     * @param  array $config       guzzle config
+     * @return string               the access token
+     */
+    protected function getClientCredentialsAccessToken($clientId, $clientSecret, $scope, $config)
+    {
+        //just cache the results so we don't hit the API for a new token for each request
+        static $results = [];
+
+        $hash = sha1($clientId . $clientSecret . $scope);
+        if (!isset($results[$hash]))
+        {
+            $http = new Client($config);
+            $response = $http->post('/oauth/token', [
+                'form_params' => [
+                    'grant_type' => 'client_credentials',
+                    'client_id' => $clientId,
+                    'client_secret' => $clientSecret,
+                    'scope' => $scope,
+                ],
+            ]);
+
+            $results[$hash] = json_decode((string) $response->getBody(), true)['access_token'];
+        }
+
+        return $results[$hash];
     }
 }
