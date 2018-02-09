@@ -15,8 +15,9 @@ class ApiVersion
      */
     public function handle($request, Closure $next, $version)
     {
+        $version = (int)$version;
         // Get api version from header, if blank then default to 1
-        $headerVersion = $request->header('api-version') ? $request->header('api-version') : '1';
+        $headerVersion = intval($request->header('api-version') ? : 1);
 
         // If header version doesn't match the version passed in the return json response
         if ($headerVersion !== $version) {
