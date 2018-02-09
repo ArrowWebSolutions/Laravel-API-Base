@@ -20,7 +20,7 @@ class ApiVersion
 
         // If header version doesn't match the version passed in the return json response
         if ($headerVersion !== $version) {
-            return response()->json(['result' => 'error', 'message' => 'Unsupported API Version.'], 200);
+            return response()->json(['result' => 'error', 'message' => 'Unsupported API Version.'], 400);
         }
 
         return $next($request);
