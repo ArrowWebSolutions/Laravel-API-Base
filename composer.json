@@ -8,8 +8,7 @@
         }
     ],
     "require": {
-        "php": ">=5.5",
-        "illuminate/routing": "^5.1.0",
+        "illuminate/routing": "^5.4.0",
         "league/fractal": "~0.13"
     },
     "require-dev": {
@@ -20,7 +19,6 @@
         "laracasts/behat-laravel-extension": "^1.0"
     },
     "license": "MIT",
-    "minimum-stability": "dev",
     "autoload": {
         "psr-4": {
             "Arrow\\ApiBase\\": "src"
