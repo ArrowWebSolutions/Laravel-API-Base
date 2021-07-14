@@ -8,8 +8,8 @@
         }
     ],
     "require": {
-        "illuminate/routing": "^5.4.0",
-        "league/fractal": "~0.13"
+        "illuminate/routing": "^5.4|^6.0|^7.0|^8.0",
+        "league/fractal": "^0.13"
     },
     "require-dev": {
         "behat/behat": "dev-master",
