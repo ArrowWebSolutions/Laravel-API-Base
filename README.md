@@ -1,3 +1,3 @@
-** Work in progress **
+** Not used **
 
-- Building blocks for Laravel API - based on classes / code / theory from https://leanpub.com/build-apis-you-wont-hate
+- Efforts should be made to migrate to something else.

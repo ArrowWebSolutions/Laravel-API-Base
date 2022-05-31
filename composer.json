@@ -8,15 +8,8 @@
         }
     ],
     "require": {
-        "illuminate/routing": "^5.4|^6.0|^7.0|^8.0",
+        "illuminate/routing": "^9.0",
         "league/fractal": "^0.13"
-    },
-    "require-dev": {
-        "behat/behat": "dev-master",
-        "behat/mink": "^1.7",
-        "behat/mink-extension": "^2.2",
-        "behat/mink-goutte-driver": "^1.2",
-        "laracasts/behat-laravel-extension": "^1.0"
     },
     "license": "MIT",
     "autoload": {
